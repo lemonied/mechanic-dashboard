@@ -1,0 +1,7 @@
+.image-select-placeholder{
+  display: inline-block;
+  &:hover{
+    cursor: pointer;
+    opacity: .8;
+  }
+}

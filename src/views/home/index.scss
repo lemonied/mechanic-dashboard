@@ -1,0 +1,27 @@
+.home{
+  .home-content{
+  }
+  .process-operator{
+    padding: 10px;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 1;
+    box-shadow: rgba(0, 0, 0, 0.15) 0 0 30px 20px;
+    display: flex;
+    align-items: center;
+    .save{
+      padding: 0 0 0 10px;
+    }
+    .config{
+      display: flex;
+      align-items: center;
+      flex: 1;
+      padding: 0 10px;
+      & > *:not(:last-child){
+        margin-right: 10px;
+      }
+    }
+  }
+}
