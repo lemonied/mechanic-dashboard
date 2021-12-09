@@ -8,6 +8,8 @@ const Recognition: FC = () => {
   const [base64, setBase64] = useState<string>();
   const img1Ref = useRef<File>();
   const img2Ref = useRef<File>();
+  const img3Ref = useRef<File>();
+  const img4Ref = useRef<File>();
   const screenshot = useCallback(() => {
     const subscription = get$('/screenshot').subscribe(res => {
       setBase64(`data:image/png;base64,${res.data.base64}`);
@@ -19,6 +21,14 @@ const Recognition: FC = () => {
     formData.append('file1', img1Ref.current!);
     formData.append('file2', img2Ref.current!);
     upload$('/compare?type=radialvariance', formData).subscribe(res => {
+      console.log(res);
+    });
+  }, []);
+  const find = useCallback(() => {
+    const formData = new FormData();
+    formData.append('file1', img3Ref.current!);
+    formData.append('file2', img4Ref.current!);
+    upload$('/find?mode=TM_CCOEFF_NORMED', formData).subscribe(res => {
       console.log(res);
     });
   }, []);
@@ -38,6 +48,15 @@ const Recognition: FC = () => {
         </div>
         <div>
           <Button onClick={compare}>比对</Button>
+        </div>
+      </div>
+      <div>
+        <div>
+          <ImageSelect onChange={e => img3Ref.current = e} />
+          <ImageSelect onChange={e => img4Ref.current = e} />
+        </div>
+        <div>
+          <Button onClick={find}>查找</Button>
         </div>
       </div>
     </div>
