@@ -6,6 +6,7 @@ import './index.scss';
 
 const Recognition: FC = () => {
   const [base64, setBase64] = useState<string>();
+  const [searchResult, setSearchResult] = useState<string>();
   const img1Ref = useRef<File>();
   const img2Ref = useRef<File>();
   const img3Ref = useRef<File>();
@@ -29,6 +30,7 @@ const Recognition: FC = () => {
     formData.append('file1', img3Ref.current!);
     formData.append('file2', img4Ref.current!);
     upload$('/find?mode=TM_CCOEFF_NORMED', formData).subscribe(res => {
+      setSearchResult(`data:image/png;base64,${res.data.base64}`);
       console.log(res);
     });
   }, []);
@@ -55,6 +57,11 @@ const Recognition: FC = () => {
           <ImageSelect onChange={e => img3Ref.current = e} />
           <ImageSelect onChange={e => img4Ref.current = e} />
         </div>
+        {
+          searchResult && (
+            <img className={'screenshot'} src={searchResult} alt="screenshot"/>
+          )
+        }
         <div>
           <Button onClick={find}>查找</Button>
         </div>
