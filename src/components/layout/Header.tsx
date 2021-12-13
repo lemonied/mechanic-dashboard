@@ -6,6 +6,7 @@ const Header: FC = () => {
     <header>
       <Link to={'/'}>首页</Link>
       <Link to={'/recognition'}>测试</Link>
+      <Link to={'/filter'}>滤波器</Link>
     </header>
   );
 };
